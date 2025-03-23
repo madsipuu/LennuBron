@@ -1,4 +1,4 @@
-Rakenduse tööle panemiseks peaks lennupiletid folderi avama IntelliJ's. Edasi tuleks src/main/java alt panna tööle LennupietidApplication. Kui IntelliJ's läheb kõik hästi, siis saab programmi kasutada browseris: http://localhost:8080 .
+Rakenduse tööle panemiseks peaks lennupiletid folderi avama IntelliJ's. Edasi tuleks src/main/java alt panna tööle LennupietidApplication. Kui IntelliJ's läheb kõik hästi, siis saab programmi kasutada browseris: http://localhost:8080 . br
 Dockeri tööle saamine ei õnnestunud kahjuks, proovisin seda  set up'ida umbes 4 tundi.
 Kogu projekti peale kulus aega umbes 20-30 tundi, alustasin töötamist selle kallal 15.03 ja lõpetasin 23.03, enamus vabast ajast selles vahemikus kulutasin selle projekti peale.
 
