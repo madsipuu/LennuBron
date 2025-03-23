@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sale</title>
+    <link rel="stylesheet" href="background.css">
+    <link rel="stylesheet" href="sales.css">
+    <script src="SaleScript.js"></script>
+    <script src="MainScript.js"></script>
+</head>
+
+<body>
+<div class="background"></div>
+<div class="overlay"></div>
+<button class="air-button" title="Adimin settingud(tulekul)" disabled>airMadis</button>
+
+
+
+<div class="content">
+    <div class="vasak-parem-container">
+        <div class="left-content">
+            <p style="margin-bottom: 5px; color: white; text-align: left; font-size: 17px;">Lend</p>
+            <div class="reis-container">
+                <button class="short-button" id="Lähetkoht">-</button>
+                <div class="arrow-container">
+                    <svg width="50" height="20" viewBox="0 0 50 20">
+                        <path d="M0 10 L40 10 M40 10 L30 5 M40 10 L30 15" stroke="black" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <button class="short-button" id="Sihtkoht">-</button>
+            </div>
+
+
+            <div class="reis-container">
+                <button class="short-button" id="Kuupäev-asi">Kuupäev:</button>
+                <div class="arrow-container">
+                    <svg width="50" height="20" viewBox="0 0 50 20">
+                        <path d="M0 10 L40 10 M40 10 L30 5 M40 10 L30 15" stroke="transparent" stroke-width="2" fill="none"/>
+                    </svg>
+                </div>
+                <button class="short-button" id="Kuupäev">-</button>
+            </div>
+            <button class="muuda-button" id="muuda" onclick = "TagasiEsiLeh()">Muuda</button>
+
+            
+            <p style="margin-bottom: 5px; color: white; text-align: left;font-size: 17px;">Reisijate arv</p>
+            <div class="reisijad-taust">
+                <div class="reisija-container">
+                    <span class="reisija-tekst">Reisijaid</span>
+                </div>
+                    <button id="minusButton" class="reisija-button disabled-button" onclick="muudaReisija(-1, 'otse')">−</button>
+                    <span id="reisijaCount" class="reisija-count">1</span>
+                    <button id = "plusButton" class="reisija-button" onclick="muudaReisija(1, 'otse')">+</button>
+            </div>
+            <p style="margin-bottom: 5px; color: white; text-align: left;font-size: 17px;">Istekohad</p>
+            <div class="grid">
+                <div class="checkbox-container">
+                    <input type="checkbox" id="akna-aares" onclick="toggleCheckboxes('akna-aares', 'korvuti', 'jalaruum', 'lah-valja')">
+                    <label for="akna-aares" class="styled-checkbox">Akna ääres</label>
+                </div>
+
+                <div class="checkbox-container">
+                    <input type="checkbox" id="korvuti" onclick="toggleCheckboxes('korvuti', 'akna-aares', 'jalaruum', 'lah-valja')">
+                    <label for="korvuti" class="styled-checkbox">Kõrvuti</label>
+                </div>
+
+                <div class="checkbox-container">
+                    <input type="checkbox" id="jalaruum" onclick="toggleCheckboxes ('jalaruum', 'lah-valja', 'akna-aares', 'korvuti')">
+                    <label for="jalaruum" class="styled-checkbox">Rohkem<br>jalaruumi</label>
+                </div>
+
+                <div class="checkbox-container">
+                    <input type="checkbox" id="lah-valja" onclick="toggleCheckboxes('lah-valja', 'jalaruum', 'akna-aares', 'korvuti')">
+                    <label for="lah-valja" class="styled-checkbox">Lähedal väljapääsule</label>
+                </div>
+            </div>
+            <p><br></p>
+            <div class="ticket-box" onclick="Ostapilet()">
+                <div class="ticket-price" id="ticketPrice">-</div>
+                <button class="purchase-button">Osta</button>
+            </div>
+
+        </div>
+        <div class = "right-content">
+            <div id="plane" class="plane"></div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="popupOverlay" class="overlay-pop" onclick="closePopup()"></div>
+<div id="popupModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closePopup()">&times;</span>
+        <h2>Kinnita piletite ost</h2>
+        <p id ="pop-tekst" class ="pop-tekst">Valitud istekohad:</p>
+        <span id="selectedSeats" class="selectedSeats"></span>
+        <br>
+        <button class="OstuConfirm" onclick="confirmPurchase()">Osta</button>
+    </div>
+</div>
+
+
+<script>
+
+
+
+
+
+    const alguskoht = localStorage.getItem("alguskoht");
+    const sihtkoht = localStorage.getItem("sihtkoht");
+    const date = localStorage.getItem("date");
+    const inimesi = localStorage.getItem("reisijaid");
+    if(inimesi === "1") document.getElementById("korvuti").disabled = true; //paneb korvuti kinni kui vaja
+    console.log("Alguskoht:", alguskoht);
+    console.log("Sihtkoht:", sihtkoht);
+    console.log("Date:", date);
+    console.log("Reisijaid:", inimesi);
+    document.getElementById("Sihtkoht").innerText = sihtkoht;
+    document.getElementById("Lähetkoht").innerText = alguskoht;
+    document.getElementById("Kuupäev").innerText = date;
+    document.getElementById("reisijaCount").innerText = inimesi;
+
+
+    let lennuk, piletid, lennudID, hind, rows, seatsPerRow;
+    //lennu info
+    fetch("http://localhost:8080/api")
+        .then(response => response.json())
+        .then(data => {
+
+            // et tuleks ainult 1 lend
+            const filteredFlights = data.filter(flight =>
+                flight.algusKoht === alguskoht &&
+                flight.sihtkoht === sihtkoht &&
+                new Date(flight.kuupaev).toISOString().split("T")[0] === date
+            );
+
+            filteredFlights.forEach(lend => {
+                lennuk=lend.lennuk;
+                piletid=lend.piletid;
+                hind=lend.hind;
+                window.lennudID = lend.id;  // Global
+                rows = lennuk.ridu;
+                seatsPerRow  = lennuk.kohtiReal;
+                console.log(rows);
+                console.log(seatsPerRow );
+
+                let bookedSeats = getBookedSeats(piletid, seatsPerRow);
+                console.log(bookedSeats)
+                looIstekohad(rows, seatsPerRow, bookedSeats);
+            });
+            //console.log(filteredFlights);
+        })
+        .catch(error => console.error("Error fetching data:", error));
+
+    //uuendab hinda koguaeg
+    document.addEventListener("click", function() {
+        updatePrice(hind);
+    });
+
+    window.onload = function () {
+        setTimeout(margilah, 0);
+        muudaReisija(0, 'ei');
+        document.getElementById("lah-valja").checked = true;
+        setTimeout(function() {
+            let palju = document.getElementById("reisijaCount").innerText;
+            document.getElementById("ticketPrice").innerText=hind*palju+" €";
+        }, 200);
+
+    };
+
+    let reisijaid = parseInt(inimesi);
+    function muudaReisija(amount, kasOtse) {
+        reisijaid += amount;
+        if (reisijaid < 1) reisijaid = 1;// Prevent going below 1
+
+        document.getElementById("reisijaCount").innerText = reisijaid;
+        //kui tuleb "+" v "-" nupu juurest muutus siis ainult
+        if(kasOtse === 'otse'){
+            otsiIstekohad();
+            //plus nupu jakoks, kui vähendatakse siis läheb tööle uuesti
+            if(amount<0){
+                const plus = document.getElementById("plusButton");
+                plus.classList.remove("disabled-button");
+            }
+        }
+
+
+        // Kui reisijaid = 1, tee miinusnupp halliks
+        //siia veel kui koik nupud on kinni siis .....
+        const minusButton = document.getElementById("minusButton");
+        if (reisijaid === 1) {
+            minusButton.classList.add("disabled-button");
+            document.getElementById("korvuti").checked = false;
+            document.getElementById("korvuti").disabled = true;
+        } else {
+            minusButton.classList.remove("disabled-button");
+            document.getElementById("korvuti").disabled = false;
+        }
+    }
+
+
+
+
+</script>
+</body>
+</html>

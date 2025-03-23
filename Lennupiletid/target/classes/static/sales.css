@@ -1,0 +1,344 @@
+.content {
+    /*background: rgb(215, 10, 10, 100%);  Light transparent background */
+    text-align: center;
+    width: 750px;
+    max-width: 95%;
+
+
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.vasak-parem-container {
+    display: flex;
+    gap: 0px; /* Space between buttons */
+    justify-content: center; /* Center the buttons */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+.left-content{
+    flex: 1;
+    max-width: 45%; /* Adjusts button width */
+    padding: 5px 5px;
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+    justify-content: space-between;
+    background: rgb(255, 255, 255, 50%);
+    color: #223968;
+    border: none;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+}
+.right-content{
+    flex: 1;
+    max-width: 55%; /* Adjusts button width */
+    padding: 5px 5px;
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+    background: rgb(255, 255, 255, 50%);
+    color: #223968;
+    border: none;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+}
+
+
+.long-button {
+
+    width: 100%;
+    padding: 13px 15px;
+    font-size: 18px;
+    text-align: left;
+    border: none;
+    background: rgb(255, 255, 255, 100%);
+    color: #152649;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.reisijad-taust{
+    width: 96%;
+    padding: 9px 2%;
+    font-size: 18px;
+    text-align: left;
+    background-color: #ffffff;
+    color: #152649;
+    border: none;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+
+
+.reis-container{
+    width: 100%;
+    background-color: #e2e2e2;
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.short-button{
+    width: 50%;
+    padding: 13px 15px;
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    background-color: transparent;
+    color: #152649;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+
+}
+
+
+.arrow-container {
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #e2e2e2;
+}
+
+.muuda-button{
+    width: 100%;
+    padding: 13px 15px;
+    font-size: 18px;
+    text-align: center;
+    border: none;
+    background: rgb(255, 255, 255, 100%);
+    color: #152649;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+/* Hover Effect */
+.muuda-button:hover {
+    background: #cdda32;
+    color: white;
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+
+}
+
+.checkbox-container {
+    position: relative;
+}
+
+/* Hide default checkbox */
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Styled label as button */
+.styled-checkbox {
+    width: 75%;
+    display: inline-block;
+    padding: 10px 20px;
+    background: white;
+    color: #152649;
+    border-radius: 3px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s ease;
+    font-size: 16px;
+    user-select: none;
+}
+
+/* Checked state */
+input[type="checkbox"]:checked + .styled-checkbox {
+    background: #152649;
+    color: white;
+    font-weight: bold;
+}
+
+/* Hover effect */
+.styled-checkbox:hover {
+    background: #bbb;
+    transform: translateY(-1px);
+}
+
+
+.plane {
+    display: grid;
+    gap: 5px;
+    margin-top: 20px;
+
+
+}
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.legroom {
+    height: 13px; /* Adjust this for bigger spacing */
+    width: 100%;
+}
+
+.seat {
+    width: 35px;
+    height: 27px;
+    background: lightgray;
+    text-align: center;
+    line-height: 50px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.booked { background: #C62828; color: white; cursor: default; }
+.selected { background:#388E3C; color: white; }
+.aisle { width: 20px; background: transparent; cursor: default; }
+
+.ticket-box {
+    display: flex;
+    width: 100%;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.ticket-price {
+    flex: 3; /* Takes up 3/4 of the space */
+    padding: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: #e2e2e2;
+    transition: background 0.3s ease;
+}
+
+.purchase-button {
+    flex: 1; /* Takes up 1/4 of the space */
+    background: #cdda32;
+    color: #152649;
+    font-weight: bold;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: background 0.3s ease;
+    position: relative;
+    z-index: 2; /* Ensures button stays above */
+}
+
+.ticket-box:hover .purchase-button {
+    border-bottom-right-radius: 3px;
+    border-top-right-radius: 3px;
+    color: white;
+    background-color: #9c9e22;
+}
+
+.ticket-box:hover .ticket-price {
+    color: white;
+    background:#152649;
+}
+
+
+/* Background overlay (prevents clicks on background) */
+.overlay-pop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark transparent background */
+    z-index: 9;
+}
+
+/* Modal container */
+.modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: #152649;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    width: 300px;
+    text-align: center;
+}
+
+/* Close button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+.pop-tekst {
+    display: inline;
+}
+.selectedSeats {
+    display: block;
+    margin-top: 5px;
+}
+
+.OstuConfirm {
+    background: #cdda32;
+    color: #152649;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 30px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.OstuConfirm:hover {
+    background-color: #9c9e22;
+    color: white;
+
+}
+
+
+
+
+

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="et">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lennuplaan</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="background.css">
+    <script src="MainScript.js"></script>
+
+</head>
+
+<body>
+
+<!-- backend data allalaadimine -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        fetchLennud(); // Call the function when the page loads
+        fetchLocations();
+    });
+
+    <!-- paneb dropdowni kinni kui vajutada kuskile mujale -->
+    document.addEventListener("click", function(event) {
+        var buttonAlates = document.querySelector(".big-button");
+        var dropdownAlates = document.getElementById("dropdown");
+        var buttonKuhu = document.querySelectorAll(".big-button")[1]; // button for "Kuhu"
+        var dropdownKuhu = document.getElementById("sihtkoht-dropdown");
+        var buttonDate = document.getElementById("datebutton"); // Date button
+        var dropdownDate = document.getElementById("date-dropdown"); // Date dropdown
+
+        // If the clicked element is NOT inside the button or dropdown, close it
+        if (!buttonAlates.contains(event.target) && !dropdownAlates.contains(event.target)) {
+            dropdownAlates.style.display = "none";
+        }
+        if (!buttonKuhu.contains(event.target) && !dropdownKuhu.contains(event.target)) {
+            dropdownKuhu.style.display = "none";
+        }
+        if (!buttonDate.contains(event.target) && !dropdownDate.contains(event.target)) {
+            dropdownDate.style.display = "none";
+        }
+
+    });
+</script>
+
+
+<div class="background"></div>
+<div class="overlay"></div> <!-- Dark overlay -->
+
+<button class="air-button" title="Adimin settingud(tulekul)">airMadis</button>
+
+<div class="content">
+    <!-- Lennuplaani nupp -->
+    <button class="long-button" onclick=window.location.href='lennuplaan.html' title="Vaata lennuplaani(kogu lennuplaani vaatamine on tulekul)" disabled>Lennuplaan <arrow>⟶</arrow></button>
+    <p><br></p>
+    <div style="border-top: 2px dotted white; width: 100%;"></div>
+    <p><br></p>
+
+    <!-- Lähte ja sihtkoha nupud -->
+    <div class="button-container">
+        <button class="big-button" onclick="toggleDropdown('alates')">
+            <p class="alatesJAkuhu">Alates</p>
+            <p id="lähtekoht">Vali lähtekoht</p>
+            <p><br></p>
+        </button>
+        <div id="dropdown" class="dropdown-content"></div>
+
+        <button class="big-button" onclick="toggleDropdown('kuhu')" id="sihtkohabutton" disabled>
+            <p class="alatesJAkuhu">Kuhu</p>
+            <p id="sihtkoht">Vali sihtkoht</p>
+            <p><br></p>
+        </button>
+        <div id="sihtkoht-dropdown" class="dropdown-content"></div>
+    </div>
+    <!-- reisijate arvu valik -->
+    <p style="margin-bottom: 5px; color: white; text-align: left;">Reisijate arv</p>
+
+    <div class="reisijad-taust">
+        <div class="reisija-container">
+            <span class="reisija-tekst">Reisijaid</span>
+        </div>
+        <button id="minusButton" class="reisija-button disabled-button" onclick="muudaReisija(-1)">−</button>
+        <span id="reisijaCount" class="reisija-count">1</span>
+        <button class="reisija-button" onclick="muudaReisija(1)">+</button>
+    </div>
+
+
+    <!-- väljalennu kuupäev -->
+    <p style="margin-bottom: 5px; color: white; text-align: left;">Väljalend</p>
+    <button id="datebutton" class="long-button" onclick="toggleDropdown('dates')"  disabled>Vali aeg</button>
+    <div id="date-dropdown" class="dropdown-content"></div>
+
+
+    <!-- tagasilennu kuupäev  -->
+    <p><br><br></p>
+    <button class="long-button-end" id="end-button"  onclick="openSalePage()" disabled >
+        Valige lend
+    </button>
+
+    <script>
+
+        let reisijaid = 1; // Default value
+
+        function muudaReisija(amount) {
+            reisijaid += amount;
+            if (reisijaid < 1) reisijaid = 1; // Prevent going below 1
+            document.getElementById("reisijaCount").innerText = reisijaid;
+
+            // Kui reisijaid = 1, tee miinusnupp halliks
+            const minusButton = document.getElementById("minusButton");
+            if (reisijaid === 1) {
+                minusButton.classList.add("disabled-button");
+            } else {
+                minusButton.classList.remove("disabled-button");
+            }
+        }
+
+
+    </script>
+
+
+
+</div>
+</body>
+</html>

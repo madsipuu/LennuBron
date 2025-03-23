@@ -1,0 +1,241 @@
+
+/* Normal Content */
+.content {
+    background: rgb(215, 10, 10, 0%); /* Light transparent background */
+    text-align: center;
+    width: 550px;
+    max-width: 95%;
+
+    position: relative;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.button-container {
+    display: flex;
+    gap: 15px; /* Space between buttons */
+    justify-content: center; /* Center the buttons */
+}
+
+.big-button {
+    flex: 1;
+    max-width: 400px; /* Adjusts button width */
+    padding: 5px 5px;
+    font-size: 18px;
+    font-weight: normal;
+    text-align: center;
+    background-color: #ffffff;
+    color: #223968;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.big-button:hover:enabled {
+    background: #bbb;
+
+}
+
+.long-button {
+    width: 100%;
+    padding: 13px 15px;
+    font-size: 18px;
+    text-align: left;
+    border: none;
+    background-color: #ffffff;
+    color: #152649;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.long-button:hover:enabled {
+    background: #bbb;
+
+}
+
+button:disabled {
+    background-color: #e2e2e2;
+    color: #a9a9a9;
+    font-weight: normal;
+}
+
+.reisijad-taust{
+    width: 96%;
+    padding: 9px 2%;
+    font-size: 18px;
+    text-align: left;
+    background-color: #ffffff;
+    color: #152649;
+    border: none;
+    border-radius: 3px;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+.reisija-button {
+
+    width: 30px;
+    height: 30px;
+    font-size: 24px;
+    border: none;
+    background: #152649;
+    color: white;
+    cursor: pointer;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+
+}
+
+.reisija-button.disabled-button {
+    background: #ddd;
+    color: #888;
+    border: 1px solid #aaa;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.reisija-count {
+    min-width: 50px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.reisija-container {
+    margin-right: auto; /* Pushes everything else to the right */
+}
+
+.reisija-tekst {
+    text-align: left; /* Ensures text inside remains left-aligned */
+}
+
+.arrow {
+    font-weight: bold;
+    background: #223968;
+    transition: transform 0.3s ease;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.alatesJAkuhu{
+    color:#8c9ab6;
+    font-weight: normal;
+    font-size: 18px;
+
+}
+
+
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    top:25.6%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    /*border: 1px solid #ccc;*/
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    max-height: 240px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.dropdown-content p {
+    margin: 5px;
+    padding: 8px;
+    color: #152649;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 3px;
+    transition: background 0.3s;
+}
+
+
+.dropdown-content p:hover {
+    background-color: #ddd;
+}
+
+#sihtkoht-dropdown{
+    display: none;
+    position: absolute;
+    top:25.6%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+    /*border: 1px solid #ccc;*/
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    min-height: 150px;
+    max-height: 240px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+
+#date-dropdown {
+    display: none;
+    position: absolute;
+    top:80%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.long-button-end {
+    width: 100%;
+    padding: 13px 15px;
+    font-size: 19px;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    background-color: #cdda32;
+    color: #152649;
+    border-radius: 3px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center !important;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+button.long-button-end {
+    display: block;
+    margin: 0 auto;
+}
+.long-button-end:hover:enabled {
+    color:white;
+    transform: translateY(-1px);
+}
+
