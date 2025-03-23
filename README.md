@@ -8,7 +8,7 @@ Kui kõik läheb IntelliJ's sujuvalt, saad rakendust kasutada brauseris aadressi
 Projekti arendamiseks kulus umbes 20–30 tundi. Töötasin selle kallal 15.03 – 23.03, pühendades sellele suure osa oma vabast ajast.
 
 ## Docker: 
-Kahjuks ei õnnestunud Dockeri seadistamine, kuigi proovisin seda käivitada ligikaudu 4 tundi.
+Kahjuks ei õnnestunud Dockeri seadistamine, kuigi proovisin seda seadistada ligikaudu 4 tundi.
 
 
 ## Probleemid
